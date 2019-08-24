@@ -2,19 +2,23 @@ import { compose } from 'recompose';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchBookings } from '../actions/bookingsActions';
+import { fetchSellers } from '../actions/sellerActions';
+import { groupedBookingsSelector } from '../selectors/groupedBookingsSelector';
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      fetchBookings
+      fetchBookings,
+      fetchSellers
     },
     dispatch
   );
 
-const mapStateToProps = ({ bookings }) => {
+const mapStateToProps = state => {
+  const { bookings, sellers } = state;
   return {
-    bookings: bookings.items,
-    isFetching: bookings.isFetching
+    groupedBookings: groupedBookingsSelector(state),
+    isFetching: bookings.isFetching || sellers.isFetching
   };
 };
 

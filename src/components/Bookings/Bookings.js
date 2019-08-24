@@ -6,14 +6,16 @@ import Spinner from '../../components/Spinner';
 class Bookings extends Component {
   componentDidMount() {
     this.props.fetchBookings();
+    this.props.fetchSellers();
   }
 
   componentDidUpdate() {
     this.props.fetchBookings();
+    this.props.fetchSellers();
   }
 
   render() {
-    const { bookings, isFetching } = this.props;
+    const { groupedBookings, isFetching } = this.props;
 
     if (isFetching) {
       return <Spinner />;
@@ -24,7 +26,7 @@ class Bookings extends Component {
         <div className="container">
           <h1>Bookings</h1>
           <hr />
-          {bookings.map(booking => (
+          {groupedBookings.map(booking => (
             <Booking quantity />
           ))}
         </div>
@@ -34,15 +36,17 @@ class Bookings extends Component {
 }
 
 Bookings.defaultProps = {
-  bookings: [],
+  groupedBookings: [],
   isFetching: false,
-  fetchBookings: () => {}
+  fetchBookings: () => {},
+  fetchSellers: () => {}
 };
 
 Bookings.propTypes = {
-  bookings: PropTypes.array,
+  groupedBookings: PropTypes.array,
   isFetching: PropTypes.bool,
-  fetchBookings: PropTypes.func
+  fetchBookings: PropTypes.func,
+  fetchSellers: PropTypes.func
 };
 
 export default Bookings;
