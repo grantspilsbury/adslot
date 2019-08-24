@@ -2,10 +2,10 @@ import React from 'react';
 
 const BookingGroup = () => (
   <section>
-    <h2>Section title</h2>
+    <h3>Group 1</h3>
     <div className="table-responsive">
-      <table className="table table-sm">
-        <thead>
+      <table className="table table-bordered">
+        <thead class="thead-light">
           <tr>
             <th>ID</th>
             <th>Product Name</th>
