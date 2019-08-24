@@ -1,6 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
 import './custom.scss';
+import React from 'react';
 import App from './containers/App';
+import store from './store/store';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);

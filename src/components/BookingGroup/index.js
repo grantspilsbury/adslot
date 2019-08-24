@@ -5,7 +5,7 @@ const BookingGroup = () => (
     <h3>Group 1</h3>
     <div className="table-responsive">
       <table className="table table-bordered">
-        <thead class="thead-light">
+        <thead className="thead-light">
           <tr>
             <th>ID</th>
             <th>Product Name</th>
