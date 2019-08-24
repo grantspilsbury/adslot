@@ -30,6 +30,7 @@ const renderBookings = allBookings => {
             productName={booking.productName}
             quantity={booking.quantity}
             rate={booking.rate}
+            isActive={booking.isActive}
           />
         ))}
       </tbody>
