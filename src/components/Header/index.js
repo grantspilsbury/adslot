@@ -5,7 +5,7 @@ const Header = () => (
     <div className="navbar box-shadow">
       <div className="container d-flex justify-content-between">
         <a href="https://www.adslot.com/" className="navbar-brand d-flex align-items-center">
-          <strong>Adslot.</strong>
+          <h1>Adslot.</h1>
         </a>
       </div>
     </div>

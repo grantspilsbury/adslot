@@ -1,6 +1,26 @@
 .navbar a {
-  font-size: 1.5em;
+  font-size: 2em;
   color: #000;
+}
+
+h1 {
+  font-size: 1em;
+}
+
+.search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid lightgray;
+  margin-bottom: 20px;
+}
+
+.search-form {
+  width: 33%;
+}
+
+#search {
+  text-align: right;
 }
 
 @import '~bootstrap/scss/bootstrap.scss';

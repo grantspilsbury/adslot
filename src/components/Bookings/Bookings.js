@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import BookingGroup from '../../components/BookingGroup';
 import Spinner from '../../components/Spinner';
+import Search from '../../components/Search';
 
 class Bookings extends Component {
   componentDidMount() {
@@ -18,8 +19,10 @@ class Bookings extends Component {
     return (
       <main role="main">
         <div className="container">
-          <h1>Bookings</h1>
-          <hr />
+          <div className="search-container">
+            <h2>Bookings</h2>
+            <Search />
+          </div>
           {sellerNames.map((sellerName, i) => (
             <BookingGroup key={sellerName} sellerName={sellerName} />
           ))}
