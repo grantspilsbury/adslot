@@ -11,19 +11,17 @@ class Bookings extends Component {
   }
 
   render() {
-    const { groupedBookings, isFetching } = this.props;
+    const { sellerNames, isFetching } = this.props;
 
-    if (isFetching) {
-      return <Spinner />;
-    }
+    if (isFetching) return <Spinner />;
 
     return (
       <main role="main">
         <div className="container">
           <h1>Bookings</h1>
           <hr />
-          {groupedBookings.map(booking => (
-            <BookingGroup booking />
+          {sellerNames.map((sellerName, i) => (
+            <BookingGroup key={sellerName} sellerName={sellerName} />
           ))}
         </div>
       </main>
@@ -32,7 +30,7 @@ class Bookings extends Component {
 }
 
 Bookings.defaultProps = {
-  groupedBookings: [],
+  sellerNames: [],
   isFetching: false,
   fetchBookings: () => {},
   fetchSellers: () => {},
@@ -40,7 +38,7 @@ Bookings.defaultProps = {
 };
 
 Bookings.propTypes = {
-  groupedBookings: PropTypes.array,
+  sellerNames: PropTypes.array,
   isFetching: PropTypes.bool,
   fetchBookings: PropTypes.func,
   fetchSellers: PropTypes.func,

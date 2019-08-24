@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { fetchBookings } from '../actions/bookingsActions';
 import { fetchSellers } from '../actions/sellerActions';
 import { fetchProducts } from '../actions/productActions';
-import { groupedBookingsSelector } from '../selectors/groupedBookingsSelector';
+import { sellerNamesSelector } from '../selectors/sellerNamesSelector';
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch =>
 const mapStateToProps = state => {
   const { bookings, sellers, products } = state;
   return {
-    groupedBookings: groupedBookingsSelector(state),
+    sellerNames: sellerNamesSelector(state),
     isFetching: bookings.isFetching || sellers.isFetching || products.isFetching
   };
 };
