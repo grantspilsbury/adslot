@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import _get from 'lodash.get';
 import _groupBy from 'lodash.groupby';
+import { toDollars } from '../../utils/numberUtils';
 
 const bookingsSelector = state => _get(state, 'bookings.items');
 const sellersSelector = state => _get(state, 'sellers.items');
@@ -24,11 +25,11 @@ export const groupedBookingsSelector = createSelector(
         const productId = product.id;
         const productBookings = bookingsGroupedByProductId[productId];
         return productBookings.map(booking => ({
-          id: booking.id,
+          id: booking.id.substring(0, 5),
           productName: product.name,
-          quantity: booking.quantity,
-          rate: product.rate,
-          cost: product.rate * booking.quantity
+          quantity: booking.quantity.toLocaleString(),
+          rate: toDollars(product.rate),
+          cost: toDollars(product.rate * (booking.quantity / 1000))
         }));
       });
     });

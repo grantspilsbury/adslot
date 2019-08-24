@@ -16,6 +16,7 @@ class Bookings extends Component {
     if (isFetching) {
       return <Spinner />;
     }
+
     return (
       <main role="main">
         <div className="container">
