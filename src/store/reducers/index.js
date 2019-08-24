@@ -2,8 +2,10 @@
 import { combineReducers } from 'redux';
 import bookings from './bookingsReducer';
 import sellers from './sellerReducer';
+import products from './productReducer';
 
 export default combineReducers({
   bookings,
-  sellers
+  sellers,
+  products
 });

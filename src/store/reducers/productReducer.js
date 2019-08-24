@@ -1,19 +1,19 @@
-import { REQUEST_SELLERS, RECEIVE_SELLERS } from '../../constants/ActionTypes';
+import { REQUEST_PRODUCTS, RECEIVE_PRODUCTS } from '../../constants/ActionTypes';
 
 export const INITIAL_STATE = {
   isFetching: false,
   items: []
 };
 
-function sellerReducer(state = INITIAL_STATE, action) {
+function productReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case REQUEST_SELLERS:
+    case REQUEST_PRODUCTS:
       return { ...state, isFetching: true };
-    case RECEIVE_SELLERS:
+    case RECEIVE_PRODUCTS:
       return { ...state, isFetching: false, items: action.items };
     default:
       return state;
   }
 }
 
-export default sellerReducer;
+export default productReducer;

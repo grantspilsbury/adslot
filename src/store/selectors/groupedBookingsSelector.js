@@ -1,19 +1,37 @@
 import { createSelector } from 'reselect';
-import lodashGet from 'lodash.get';
-import lodashGroupBy from 'lodash.groupby';
+import _get from 'lodash.get';
+import _groupBy from 'lodash.groupby';
 
-const bookingsSelector = state => lodashGet(state, 'bookings.items');
-const sellersSelector = state => lodashGet(state, 'sellers.items');
+const bookingsSelector = state => _get(state, 'bookings.items');
+const sellersSelector = state => _get(state, 'sellers.items');
+const productsSelector = state => _get(state, 'products.items');
 
 export const groupedBookingsSelector = createSelector(
   bookingsSelector,
   sellersSelector,
-  (bookings, sellers) => {
-    if (!bookings.length || !sellers.length) return [];
-    console.log('bookings', bookings);
-    console.log('sellers', sellers);
-    // group by by id
-    // return map id to seller name
+  productsSelector,
+  (bookings, sellers, products) => {
+    if (!bookings.length || !sellers.length || !products.length) return [];
+
+    const productsGroupedBySellerId = _groupBy(products, 'sellerId');
+
+    const bookingsGroupedByProductId = _groupBy(bookings, 'productId');
+
+    return sellers.map(seller => {
+      const sellerId = seller.id;
+      const sellersProducts = productsGroupedBySellerId[sellerId];
+      return (sellersProducts || []).map(product => {
+        const productId = product.id;
+        const productBookings = bookingsGroupedByProductId[productId];
+        return productBookings.map(booking => ({
+          id: booking.id,
+          productName: product.name,
+          quantity: booking.quantity,
+          rate: product.rate,
+          cost: product.rate * booking.quantity
+        }));
+      });
+    });
   }
 );
 
